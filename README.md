@@ -9,9 +9,9 @@
 - Sonidos cetáceos con espectrograma.
 
 ### Participantes:
-- ![@SpringIsKTho](https://github.com/SpringIsKTho)
-- ![@Gokirbyvan](https://github.com/Gokirbyvan)
-- ![@Zubillaga736](https://github.com/Zubillaga736)
+- [![@SpringIsKTho]](https://github.com/SpringIsKTho)
+- [![@Gokirbyvan]](https://github.com/Gokirbyvan)
+- [![@Zubillaga736]](https://github.com/Zubillaga736)
 
 ## Capturas del prototipo en Figma:
 - ![](img/bermudawhole.png)
