@@ -82,6 +82,7 @@
 
     <Button
         android:id="@+id/btnLogin"
+        android:onClick="openMain"
         android:layout_marginTop="4dp"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -92,6 +93,7 @@
         style="@style/buttonNormal" />
     <Button
         android:id="@+id/btnSignup"
+        android:onClick="openSignUp"
         android:layout_width="0dp"
         android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="@id/gline1"
