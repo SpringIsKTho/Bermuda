@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bermuda">
         <activity
+            android:name=".ProfileScreen"
+            android:exported="false" />
+        <activity
             android:name=".SignUpScreen"
             android:exported="false" />
         <activity
