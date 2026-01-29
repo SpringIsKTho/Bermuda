@@ -62,7 +62,7 @@ public class Splash extends AppCompatActivity {
 
     private void openApp() {
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(Splash.this, MainActivity.class);
+            Intent intent = new Intent(Splash.this, LoginScreen.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }, 3000);

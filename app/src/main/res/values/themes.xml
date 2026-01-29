@@ -3,9 +3,19 @@
     <style name="Base.Theme.Bermuda" parent="Theme.MaterialComponents.DayNight">
         <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
+    <style name="Alt.Theme.Bermuda" parent="Theme.MaterialComponents.DayNight">
+        <item name="actionBarStyle">@style/NormalActionBar</item>
+    </style>
     <style name="TransparentActionBar" parent="Widget.AppCompat.ActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="background">@android:color/transparent</item>
+        <item name="android:elevation">0dp</item>
+        <item name="displayOptions">showHome</item>
+    </style>
+
+    <style name="NormalActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="background">@color/blue_200</item>
         <item name="android:elevation">0dp</item>
         <item name="displayOptions">showHome</item>
     </style>
