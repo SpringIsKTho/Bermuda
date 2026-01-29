@@ -17,12 +17,15 @@
             android:theme="@style/Base.Theme.Bermuda" />
         <activity
             android:name=".SignUpScreen"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Base.Theme.Bermuda"/>
         <activity
             android:name=".LoginScreen"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Bermuda.NoActionBar"/>
         <activity android:name=".Splash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Bermuda.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
