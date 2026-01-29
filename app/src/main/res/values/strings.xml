@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Bermuda</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Email">Email</string>
+    <string name="Login">LOGIN</string>
+    <string name="Signup">SIGNUP</string>
+    <string name="Cancel">CANCEL</string>
+
 </resources>

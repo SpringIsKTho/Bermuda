@@ -12,18 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bermuda">
         <activity
-            android:name=".Splash"
-            android:exported="true" >
+            android:name=".ProfileScreen"
+            android:exported="true"
+            android:theme="@style/Base.Theme.Bermuda" />
+        <activity
+            android:name=".SignUpScreen"
+            android:exported="false" />
+        <activity
+            android:name=".LoginScreen"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Base.Theme.Bermuda">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false">
-
         </activity>
     </application>
 
