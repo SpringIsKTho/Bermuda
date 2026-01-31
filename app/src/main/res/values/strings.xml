@@ -6,5 +6,6 @@
     <string name="Login">LOGIN</string>
     <string name="Signup">SIGNUP</string>
     <string name="Cancel">CANCEL</string>
+    <string name="Fishname">Fish name</string>
 
 </resources>

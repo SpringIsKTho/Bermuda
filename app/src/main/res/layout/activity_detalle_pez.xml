@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imgDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Imagen del pez" />
+
+        <TextView
+            android:id="@+id/txtNombreDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del pez"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/txtDescripcionDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripción del pez"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtAudioNoDisponible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Audio no disponible"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnPlayAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reproducir audio"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+
+</ScrollView>

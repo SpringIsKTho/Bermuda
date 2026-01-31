@@ -7,13 +7,65 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <!--<androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="72dp"
+                android:layout_marginEnd="8dp"
+                android:padding="10dp"
+                android:text="holacomova"
+                android:textColor="@color/black"
+                android:textSize="20sp">
+
+            </TextView>
+        </androidx.core.widget.NestedScrollView>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:fabAlignmentMode="center"
+            app:menu="@menu/bottom_app_bar_menu"
+            app:navigationIcon="@drawable/usericon"
+            app:fabCradleVerticalOffset="1dp"
+            app:fabCradleMargin="16dp"
+            app:fabCradleRoundedCornerRadius="8dp"
+            />
+
+        <!--            style="@style/Widget.MaterialComponents.BottomAppBar.PrimarySurface"-->
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_200"
+            android:src="@drawable/outline_add_2_24"
+            app:fabSize="normal"
+            app:layout_anchor="@+id/bottom_app_bar"
+            app:tint="@android:color/holo_orange_light" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
