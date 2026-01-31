@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,18 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bermuda">
         <activity
+            android:name=".DetallePezActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileScreen"
             android:exported="true"
             android:theme="@style/Base.Theme.Bermuda" />
         <activity
             android:name=".SignUpScreen"
             android:exported="true"
-            android:theme="@style/Base.Theme.Bermuda"/>
+            android:theme="@style/Base.Theme.Bermuda" />
         <activity
             android:name=".LoginScreen"
             android:exported="true"
-            android:theme="@style/Theme.Bermuda.NoActionBar"/>
-        <activity android:name=".Splash"
+            android:theme="@style/Theme.Bermuda.NoActionBar" />
+        <activity
+            android:name=".Splash"
             android:exported="true"
             android:theme="@style/Theme.Bermuda.NoActionBar">
             <intent-filter>
@@ -35,8 +41,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Alt.Theme.Bermuda">
-        </activity>
+            android:theme="@style/Alt.Theme.Bermuda"></activity>
     </application>
 
 </manifest>

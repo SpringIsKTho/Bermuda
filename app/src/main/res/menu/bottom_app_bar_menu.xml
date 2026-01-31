@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/heart"
+        android:id="@+id/accessibility"
         android:title="Favourite"
         android:icon="@drawable/usericon"
         app:showAsAction="ifRoom"
         />
 
     <item
-        android:id="@+id/search"
+        android:id="@+id/logoff"
         android:title="Language"
         android:icon="@drawable/exit_to_app_svgrepo_com"
         app:showAsAction="ifRoom"
