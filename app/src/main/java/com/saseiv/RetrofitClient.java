@@ -26,22 +26,15 @@ public class RetrofitClient {
 
                     String token = prefs.getString("TOKEN", API_KEY);
 
-                    Request request = chain.request().newBuilder()
-                            .addHeader("apikey", API_KEY)
-                            .addHeader("Authorization", "Bearer " + token)
-                            .addHeader("Content-Type", "application/json")
-                            .build();
+                    Request request = chain.request().newBuilder().addHeader("apikey", API_KEY).addHeader("Authorization", "Bearer " + token)
+                            .addHeader("Content-Type", "application/json").build();
 
                     return chain.proceed(request);
                 })
                 .build();
 
         if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .client(client)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+            retrofit = new Retrofit.Builder().baseUrl(BASE_URL).client(client).addConverterFactory(GsonConverterFactory.create()).build();
         }
 
         return retrofit;

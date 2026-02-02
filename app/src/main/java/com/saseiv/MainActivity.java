@@ -1,20 +1,27 @@
 package com.saseiv;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         BottomAppBar bottomAppBar = findViewById(R.id.bottom_app_bar);
+        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
 
         bottomAppBar.setOnMenuItemClickListener(item -> {
 
@@ -35,6 +43,48 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog();
+            }
+        });
+
+    }
+
+    private void getDialog(){
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogView = inflater.inflate(R.layout.dialog_new_fish_layout, null);
+        EditText nameFish = dialogView.findViewById(R.id.nameFish);
+        EditText descFish = dialogView.findViewById(R.id.descFish);
+        Button imgFish = dialogView.findViewById(R.id.imgFish);
+        Button audioFish = dialogView.findViewById(R.id.audioFish);
+        Button uploadFish = dialogView.findViewById(R.id.uploadFish);
+
+        AlertDialog dialog = new MaterialAlertDialogBuilder(this).setView(dialogView).setCancelable(true).create();
+
+        imgFish.setOnClickListener(v -> {
+            Toast.makeText(this,"Imagen seleccionada", Toast.LENGTH_SHORT).show();
+        });
+
+        audioFish.setOnClickListener(v -> {
+            Toast.makeText(this, "Audio seleccionado", Toast.LENGTH_SHORT).show();
+        });
+
+        uploadFish.setOnClickListener(v -> {
+            String nombre = nameFish.getText().toString().trim();
+            String desc = descFish.getText().toString().trim();
+
+            if(nombre.isEmpty() || desc.isEmpty()){
+                Toast.makeText(this, "Rellena los campos con un asterisco.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Toast.makeText(this, "Pez subido con exito.", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
+
+        dialog.show();
     }
 
     private void logoutUser() {
