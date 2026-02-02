@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:background="@color/blue_200"
@@ -13,9 +13,17 @@
         android:text="@string/NewFish"/>
 
     <EditText
+        android:id="@+id/nameFish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/Fishname"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/descFish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Fishdesc"
         android:textSize="12sp" />
 
     <TextView
@@ -26,10 +34,34 @@
         android:text="Fish's image"/>
 
     <Button
+        android:id="@+id/imgFish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blue_500"
         android:text="@string/ChooseFile"
+        android:textColor="@color/orange_500"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Fish's audio"/>
+
+    <Button
+        android:id="@+id/audioFish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue_500"
+        android:text="@string/ChooseFile"
+        android:textColor="@color/orange_500"/>
+
+    <Button
+        android:id="@+id/uploadFish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue_700"
+        android:text="@string/upload"
         android:textColor="@color/orange_500"/>
 
 
