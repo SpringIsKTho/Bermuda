@@ -9,7 +9,8 @@ import okhttp3.Request;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+//Retrofit es un generador de HTTP para que pueda ser reconocido por Supabase
+//Supabase enviará un link HTTP, que será interpretado por Retrofit.
 public class RetrofitClient {
 
     private static Retrofit retrofit;
