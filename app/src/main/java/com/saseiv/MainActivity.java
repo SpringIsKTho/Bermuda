@@ -3,6 +3,7 @@ package com.saseiv;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,6 +25,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int PICK_IMAGE = 100;
+    private static final int PICK_AUDIO = 101;
+    private Uri imageUri, audioUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +69,22 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = new MaterialAlertDialogBuilder(this).setView(dialogView).setCancelable(true).create();
 
         imgFish.setOnClickListener(v -> {
-            Toast.makeText(this,"Imagen seleccionada", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent, PICK_IMAGE);
         });
 
         audioFish.setOnClickListener(v -> {
-            Toast.makeText(this, "Audio seleccionado", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("audio/*");
+            startActivityForResult(intent, PICK_AUDIO);
         });
 
         uploadFish.setOnClickListener(v -> {
             String nombre = nameFish.getText().toString().trim();
             String desc = descFish.getText().toString().trim();
 
-            if(nombre.isEmpty() || desc.isEmpty()){
+            if(nombre.isEmpty() || desc.isEmpty() || imageUri == null){
                 Toast.makeText(this, "Rellena los campos con un asterisco.", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -85,6 +94,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK && data != null){
+            if(requestCode == PICK_IMAGE){
+                imageUri = data.getData();
+                Toast.makeText(this,"Imagen seleccionada", Toast.LENGTH_SHORT).show();
+            }
+            if (requestCode == PICK_AUDIO){
+                audioUri = data.getData();
+                Toast.makeText(this, "Audio seleccionado", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void logoutUser() {
