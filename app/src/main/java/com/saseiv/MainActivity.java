@@ -63,12 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
         cargarPeces();
 
-        SharedPreferences prefs =
-                getSharedPreferences("supabase", MODE_PRIVATE);
-
-        Log.d("TOKEN_DEBUG",
-                prefs.getString("access_token", "NO TOKEN"));
-
         bottomAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.logoff) {
                 logoutUser();
@@ -80,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(v -> mostrarDialogNuevoPez());
     }
 
-    // ================== CARGAR PECES ==================
 
     private void cargarPeces() {
         SupabaseService service =
@@ -110,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // ================== DIALOG ==================
 
     private void mostrarDialogNuevoPez() {
 
@@ -173,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    // ================== SUBIDA IMAGEN ==================
 
     private void subirImagenYContinuar(
             String userId,
@@ -197,7 +188,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // ================== STORAGE ==================
 
     private void uploadFile(
             Uri uri,
@@ -261,9 +251,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    // ================== INSERT DB ==================
-
     private void insertarPez(
             String userId,
             String nombre,
@@ -308,7 +295,6 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    // ================== RESULTADOS ==================
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -326,7 +312,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // ================== SESIÓN ==================
 
     private void logoutUser() {
         SharedPreferences prefs =

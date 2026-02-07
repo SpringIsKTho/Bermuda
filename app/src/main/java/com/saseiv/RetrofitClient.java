@@ -34,7 +34,6 @@ public class RetrofitClient {
                             chain.request().newBuilder()
                                     .addHeader("apikey", API_KEY);
 
-                    // 🔑 SOLO si hay sesión
                     if (accessToken != null) {
                         builder.addHeader(
                                 "Authorization",
