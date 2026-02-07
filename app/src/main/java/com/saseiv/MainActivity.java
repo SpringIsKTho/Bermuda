@@ -1,5 +1,6 @@
 package com.saseiv;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -60,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PezAdapter(this, listaPeces);
         recyclerView.setAdapter(adapter);
+
+        SharedPreferences prefs =
+                getSharedPreferences("supabase", MODE_PRIVATE);
+
+        Log.d("TOKEN_DEBUG",
+                prefs.getString("access_token", "NO TOKEN"));
 
         cargarPeces();
 
@@ -147,9 +154,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             SharedPreferences prefs =
-                    getSharedPreferences("SESSION", MODE_PRIVATE);
+                    getSharedPreferences("supabase", MODE_PRIVATE);
 
-            String userId = prefs.getString("USER_ID", null);
+            String userId = prefs.getString("user_id", null);
 
             if (userId == null) {
                 Toast.makeText(this,
@@ -176,18 +183,105 @@ public class MainActivity extends AppCompatActivity {
         uploadFile(imageUri, "images", imageName, new OnUploadComplete() {
             @Override
             public void onSuccess(String imageUrl) {
-                insertarPez(userId, nombre, desc, imageUrl, null);
+
+                // 🔹 Si NO hay audio
+                if (audioUri == null) {
+                    insertarPez(userId, nombre, desc, imageUrl, null);
+                    return;
+                }
+
+                // 🔹 Si SÍ hay audio
+                String audioName = "audio_" + System.currentTimeMillis() + ".mp3";
+
+                uploadAudio(audioUri, "audios", audioName, new OnUploadComplete() {
+                    @Override
+                    public void onSuccess(String audioUrl) {
+                        insertarPez(userId, nombre, desc, imageUrl, audioUrl);
+                    }
+
+                    @Override
+                    public void onError() {
+                        Toast.makeText(
+                                MainActivity.this,
+                                "Error subiendo audio",
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                });
             }
 
             @Override
             public void onError() {
-                Toast.makeText(MainActivity.this,
+                Toast.makeText(
+                        MainActivity.this,
                         "Error subiendo imagen",
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_LONG
+                ).show();
             }
         });
     }
 
+    private void uploadAudio(
+            Uri uri,
+            String bucket,
+            String filePath,
+            OnUploadComplete callback
+    ) {
+        try {
+            byte[] bytes = readBytesFromUri(uri);
+
+            RequestBody body = RequestBody.create(
+                    bytes,
+                    okhttp3.MediaType.parse("audio/mpeg")
+            );
+
+            StorageService storage =
+                    RetrofitClient.getClient(this)
+                            .create(StorageService.class);
+
+            storage.uploadFile(bucket, filePath, body)
+                    .enqueue(new Callback<ResponseBody>() {
+
+                        @Override
+                        public void onResponse(
+                                Call<ResponseBody> call,
+                                Response<ResponseBody> response
+                        ) {
+                            if (response.isSuccessful()) {
+
+                                String url =
+                                        "https://nampxlakrtlwxpcfvzvn.supabase.co/" +
+                                                "storage/v1/object/public/" +
+                                                bucket + "/" + filePath;
+
+                                callback.onSuccess(url);
+
+                            } else {
+                                try {
+                                    String error = response.errorBody() != null
+                                            ? response.errorBody().string()
+                                            : "sin cuerpo";
+
+                                    Log.e("AUDIO_UPLOAD_ERROR",
+                                            "Código: " + response.code() + " → " + error);
+                                } catch (Exception ignored) {}
+
+                                callback.onError();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Log.e("UPLOAD_ERROR", t.getMessage(), t);
+                            callback.onError();
+                        }
+                    });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            callback.onError();
+        }
+    }
 
     private void uploadFile(
             Uri uri,
@@ -230,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
                                             ? response.errorBody().string()
                                             : "sin cuerpo";
 
-                                    Log.e("UPLOAD_ERROR",
+                                    Log.e("IMAGE_UPLOAD_ERROR",
                                             "Código: " + response.code() + " → " + error);
                                 } catch (Exception ignored) {}
 
@@ -315,11 +409,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void logoutUser() {
         SharedPreferences prefs =
-                getSharedPreferences("SESSION", MODE_PRIVATE);
+                getSharedPreferences("supabase", MODE_PRIVATE);
+
         prefs.edit().clear().apply();
 
-        Intent intent =
-                new Intent(MainActivity.this, LoginScreen.class);
+        Intent intent = new Intent(this, LoginScreen.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
