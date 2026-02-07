@@ -80,16 +80,22 @@ public class LoginScreen extends AppCompatActivity {
     }
 
     private void saveSession(String token, String userId) {
-        SharedPreferences prefs = getSharedPreferences("SESSION", MODE_PRIVATE);
+
+        SharedPreferences prefs =
+                getSharedPreferences("supabase", MODE_PRIVATE);
+
         prefs.edit()
-                .putString("TOKEN", token)
-                .putString("USER_ID", userId)
+                .putString("access_token", token)
+                .putString("user_id", userId)
                 .apply();
     }
 
     private void checkSession() {
-        SharedPreferences prefs = getSharedPreferences("SESSION", MODE_PRIVATE);
-        String token = prefs.getString("TOKEN", null);
+
+        SharedPreferences prefs =
+                getSharedPreferences("supabase", MODE_PRIVATE);
+
+        String token = prefs.getString("access_token", null);
 
         if (token != null) {
             startActivity(new Intent(this, MainActivity.class));
