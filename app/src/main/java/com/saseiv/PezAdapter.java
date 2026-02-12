@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+
 import java.util.List;
 
 public class PezAdapter extends RecyclerView.Adapter<PezAdapter.ViewHolder> {
@@ -43,8 +46,11 @@ public class PezAdapter extends RecyclerView.Adapter<PezAdapter.ViewHolder> {
 
         holder.nombre.setText(pez.getNombre());
 
+        int radius = (int) (16 * context.getResources().getDisplayMetrics().density);
+
         Glide.with(context)
                 .load(pez.getImagen_url())
+                .transform(new CenterCrop(), new RoundedCorners(radius))
                 .into(holder.imagen);
 
         holder.itemView.setOnClickListener(v -> {
