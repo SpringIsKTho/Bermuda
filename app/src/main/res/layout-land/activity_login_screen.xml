@@ -19,7 +19,7 @@
         android:id="@+id/logo"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:src="@drawable/deadfish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,20 +43,23 @@
         android:id="@+id/tinp1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="@id/gline1"
         app:layout_constraintStart_toStartOf="@id/gline2"
         app:layout_constraintTop_toBottomOf="@id/logo"
-        app:startIconDrawable="@drawable/usericon"
+        app:startIconDrawable="@drawable/outline_alternate_email_24"
+        app:hintTextColor="@color/blue_500"
+        app:boxStrokeColor="@color/blue_700"
         >
 
         <EditText
+            android:id="@+id/editUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/usericon"
+            android:drawableLeft="@drawable/outline_alternate_email_24"
             android:alpha="0.6"
             android:background="@color/white"
-            android:hint="@string/Username"/>
+            android:hint="@string/Email"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -68,9 +71,13 @@
         app:layout_constraintTop_toBottomOf="@id/tinp1"
         app:startIconDrawable="@drawable/key_basic_com"
         app:passwordToggleEnabled="true"
+        app:hintTextColor="@color/blue_500"
+        app:boxStrokeColor="@color/blue_700"
         >
 
         <EditText
+            android:id="@+id/editPassword"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.6"

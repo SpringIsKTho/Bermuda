@@ -2,10 +2,17 @@
     <string name="app_name">Bermuda</string>
     <string name="Username">Username</string>
     <string name="Password">Password</string>
+    <string name="PasswordC">Confirm Password</string>
     <string name="Email">Email</string>
     <string name="Login">LOGIN</string>
     <string name="Signup">SIGNUP</string>
     <string name="Cancel">CANCEL</string>
-    <string name="Fishname">Fish name</string>
+    <string name="Fishname">Fish name *</string>
+    <string name="Fishdesc">Fish description *</string>
+    <string name="Fishaudio">Fish audio</string>
+    <string name="Fishimage">Fish image</string>
+    <string name="NewFish">New Fish</string>
+    <string name="ChooseFile">Choose File</string>
+    <string name="upload">Upload</string>
 
 </resources>

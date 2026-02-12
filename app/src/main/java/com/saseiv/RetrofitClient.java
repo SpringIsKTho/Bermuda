@@ -9,30 +9,39 @@ import okhttp3.Request;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+//Retrofit es un generador de HTTP para que pueda ser reconocido por Supabase
+//Supabase enviará un link HTTP, que será interpretado por Retrofit.
 public class RetrofitClient {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://nampxlakrtlwxpcfvzvn.supabase.co/";
-    private static final String API_KEY = "sb_publishable_vD86_ffuHHqFYXaqNTOvJg_KHwfZl-s";
+    private static final String BASE_URL =
+            "https://nampxlakrtlwxpcfvzvn.supabase.co/";
+    private static final String API_KEY =
+            "sb_publishable_vD86_ffuHHqFYXaqNTOvJg_KHwfZl-s";
 
     public static Retrofit getClient(Context context) {
 
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor((Interceptor) chain -> {
+                .addInterceptor(chain -> {
 
                     SharedPreferences prefs =
-                            context.getSharedPreferences("SESSION", Context.MODE_PRIVATE);
+                            context.getSharedPreferences("supabase", Context.MODE_PRIVATE);
 
-                    String token = prefs.getString("TOKEN", API_KEY);
+                    String accessToken =
+                            prefs.getString("access_token", null);
 
-                    Request request = chain.request().newBuilder()
-                            .addHeader("apikey", API_KEY)
-                            .addHeader("Authorization", "Bearer " + token)
-                            .addHeader("Content-Type", "application/json")
-                            .build();
+                    Request.Builder builder =
+                            chain.request().newBuilder()
+                                    .addHeader("apikey", API_KEY);
 
-                    return chain.proceed(request);
+                    if (accessToken != null) {
+                        builder.addHeader(
+                                "Authorization",
+                                "Bearer " + accessToken
+                        );
+                    }
+
+                    return chain.proceed(builder.build());
                 })
                 .build();
 

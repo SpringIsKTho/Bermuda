@@ -30,14 +30,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8"/>
+        app:layout_constraintGuide_percent="0.9"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tinp1"
@@ -47,17 +47,19 @@
         app:layout_constraintEnd_toEndOf="@id/gline1"
         app:layout_constraintStart_toStartOf="@id/gline2"
         app:layout_constraintTop_toBottomOf="@id/logo"
-        app:startIconDrawable="@drawable/usericon"
+        app:startIconDrawable="@drawable/outline_alternate_email_24"
+        app:hintTextColor="@color/blue_500"
+        app:boxStrokeColor="@color/blue_700"
         >
 
         <EditText
             android:id="@+id/editUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/usericon"
+            android:drawableLeft="@drawable/outline_alternate_email_24"
             android:alpha="0.6"
             android:background="@color/white"
-            android:hint="@string/Username"/>
+            android:hint="@string/Email"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -69,10 +71,13 @@
         app:layout_constraintTop_toBottomOf="@id/tinp1"
         app:startIconDrawable="@drawable/key_basic_com"
         app:passwordToggleEnabled="true"
+        app:hintTextColor="@color/blue_500"
+        app:boxStrokeColor="@color/blue_700"
         >
 
         <EditText
             android:id="@+id/editPassword"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.6"
