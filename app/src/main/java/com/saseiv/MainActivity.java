@@ -372,7 +372,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
 
                         Toast.makeText(MainActivity.this,
-                                "Pez subido con éxito 🐟",
+                                "Pez subido con éxito.",
                                 Toast.LENGTH_SHORT).show();
 
                         cargarPeces();

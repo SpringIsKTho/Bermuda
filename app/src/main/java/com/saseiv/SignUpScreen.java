@@ -26,7 +26,6 @@ public class SignUpScreen extends AppCompatActivity {
         editPasswordConfirm = findViewById(R.id.editPasswordConfirm);
     }
 
-    // BOTÓN SIGNUP
     public void openMain(View view) {
 
         String email = editEmail.getText().toString().trim();
@@ -46,7 +45,6 @@ public class SignUpScreen extends AppCompatActivity {
         registerUser(email, password);
     }
 
-    // BOTÓN CANCELAR → LOGIN
     public void openLogin(View view) {
         finish();
     }

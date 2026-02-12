@@ -2,9 +2,9 @@ package com.saseiv;
 
 public class Pez {
     private int id;
-    private String nombre;
-    private String descripcion;
-    private String imagen_url;
+    private String title;
+    private String description;
+    private String file_url;
     private String audio_url;
 
     public int getId() {
@@ -12,15 +12,15 @@ public class Pez {
     }
 
     public String getNombre() {
-        return nombre;
+        return title;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return description;
     }
 
     public String getImagen_url() {
-        return imagen_url;
+        return file_url;
     }
 
     public String getAudio_url() {
