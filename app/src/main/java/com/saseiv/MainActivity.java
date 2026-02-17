@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private PezAdapter adapter;
     private List<Pez> listaPeces = new ArrayList<>();
+    private SwipeRefreshLayout swipeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 prefs.getString("access_token", "NO TOKEN"));
 
         cargarPeces();
+        swipeLayout = findViewById(R.id.swipeRefresh);
+        swipeLayout.setOnRefreshListener(mOnRefreshListener);
 
         bottomAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.logoff) {
@@ -81,6 +88,18 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(v -> mostrarDialogNuevoPez());
     }
 
+
+    protected SwipeRefreshLayout.OnRefreshListener
+        mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            final ConstraintLayout mLayout = findViewById(R.id.main);
+            cargarPeces();
+            Snackbar snackbar = Snackbar.make(mLayout, "Page reset", Snackbar.LENGTH_SHORT);
+            snackbar.show();
+            swipeLayout.setRefreshing(false);
+        }
+    };
 
     private void cargarPeces() {
         SupabaseService service =
