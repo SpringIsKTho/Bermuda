@@ -1,7 +1,9 @@
 package com.saseiv;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -30,5 +32,15 @@ public class ProfileScreen extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(new ColorDrawable(this.getResources().getColor(R.color.transparent)))
                 .into(mPic);
+    }
+
+    public void openPrivacidad(View v){
+        Intent intent=new Intent(ProfileScreen.this, PrivacidadActivity.class);
+        startActivity(intent);
+    }
+
+    public void openContact(View v){
+        Intent intent=new Intent(ProfileScreen.this, contact.class);
+        startActivity(intent);
     }
 }
