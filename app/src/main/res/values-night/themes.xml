@@ -1,7 +1,12 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
+
     <style name="Base.Theme.Bermuda" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="actionBarStyle">@style/NormalActionBar</item>
+        <item name="colorPrimary">@color/blue_700</item>
+        <item name="colorSecondary">@color/orange_200</item>
+        <item name="android:colorBackground">@color/backgroundDark</item>
+        <item name="colorSurface">@color/surfaceDark</item>
+        <item name="colorOnSurface">@color/white</item>
     </style>
+
 </resources>

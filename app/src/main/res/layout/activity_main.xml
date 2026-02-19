@@ -54,13 +54,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="@color/white"
+            app:backgroundTint="@color/white"
+            app:liftOnScroll="false"
             app:fabAlignmentMode="center"
             app:menu="@menu/bottom_app_bar_menu"
             app:navigationIcon="@drawable/usericon"
             app:fabCradleVerticalOffset="1dp"
             app:fabCradleMargin="16dp"
-            app:fabCradleRoundedCornerRadius="8dp"
-            />
+            app:fabCradleRoundedCornerRadius="8dp" />
 
         <!--            style="@style/Widget.MaterialComponents.BottomAppBar.PrimarySurface"-->
 
@@ -69,10 +71,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue_200"
+            app:tint="@color/orange_500"
             android:src="@drawable/outline_add_2_24"
             app:fabSize="normal"
-            app:layout_anchor="@+id/bottom_app_bar"
-            app:tint="@android:color/holo_orange_light" />
+            app:layout_anchor="@+id/bottom_app_bar" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

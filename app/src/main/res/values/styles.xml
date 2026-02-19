@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="buttonOutlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="buttonOutlined" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/orange_500</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/orange_500</item>
         <item name="cornerRadius">8dp</item>
-        <item name="strokeColor">@color/orange_500</item>
-        <item name="strokeWidth">1dp</item>
     </style>
 
     <style name="buttonNormal" parent="Widget.MaterialComponents.Button">
