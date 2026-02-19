@@ -10,6 +10,7 @@
     <string name="Fishname">Fish name *</string>
     <string name="Fishdesc">Fish description *</string>
     <string name="Fishaudio">Fish audio</string>
+    <string name="Play">Play</string>
     <string name="Fishimage">Fish image</string>
     <string name="NewFish">New Fish</string>
     <string name="ChooseFile">Choose File</string>
