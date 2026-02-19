@@ -58,6 +58,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/outline_alternate_email_24"
             android:alpha="0.6"
+            android:textSize="10sp"
             android:background="@color/white"
             android:hint="@string/Email"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -80,6 +81,7 @@
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="10sp"
             android:alpha="0.6"
             android:drawableLeft="@drawable/key_basic_com"
             android:background="@color/white"

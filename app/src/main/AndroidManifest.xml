@@ -15,11 +15,12 @@
         android:theme="@style/Theme.Bermuda">
         <activity
             android:name=".DetallePezActivity"
-            android:exported="false" />
+            android:exported="true"
+            android:theme="@style/Alt.Theme.Bermuda"/>
         <activity
             android:name=".ProfileScreen"
             android:exported="true"
-            android:theme="@style/Base.Theme.Bermuda" />
+            android:theme="@style/Alt.Theme.Bermuda" />
         <activity
             android:name=".SignUpScreen"
             android:exported="true"
