@@ -3,7 +3,7 @@
     <style name="buttonOutlined" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/colorBotonesSignUp</item>
         <item name="android:backgroundTint">@color/orange_500</item>
         <item name="cornerRadius">8dp</item>
     </style>
@@ -11,7 +11,7 @@
     <style name="buttonNormal" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/blue_200</item>
+        <item name="android:textColor">@color/colorBotones</item>
         <item name="android:backgroundTint">@color/blue_700</item>
         <item name="cornerRadius">8dp</item>
     </style>

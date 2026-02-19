@@ -5,6 +5,7 @@
     </style>
     <style name="Alt.Theme.Bermuda" parent="Theme.MaterialComponents.DayNight">
         <item name="actionBarStyle">@style/NormalActionBar</item>
+        <item name="android:windowIsTranslucent"></item>
     </style>
     <style name="TransparentActionBar" parent="Widget.AppCompat.ActionBar">
         <item name="android:windowIsTranslucent">true</item>

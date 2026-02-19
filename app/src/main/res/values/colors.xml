@@ -6,8 +6,10 @@
     <color name="blue_700">#1D5273</color>
     <color name="blue_500">#1F5B73</color>
     <color name="blue_200">#8EBABF</color>
+    <color name="colorBotonesSignUp">#FFFFFF</color>
     <color name="orange_500">#FF7700</color>
     <color name="orange_200">#D9B596</color>
     <color name="backgroundDark">#121212</color>
     <color name="surfaceDark">#1E1E1E</color>
+    <color name="colorBotones">#8EBABF</color>
 </resources>

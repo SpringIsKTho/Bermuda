@@ -2,6 +2,8 @@
 <resources>
     <color name="blue_500">#1B3A4B</color>
     <color name="blue_200">#547E87</color>
+    <color name="colorBotones">#FFFFFF</color>
+    <color name="colorBotonesSignUp">#FFFFFF</color>
     <color name="orange_500">#CC6600</color>
     <color name="backgroundDark">#121212</color>
     <color name="surfaceDark">#1E1E1E</color>
