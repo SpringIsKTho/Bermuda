@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerPeces);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
         adapter = new PezAdapter(this, listaPeces);
         recyclerView.setAdapter(adapter);
 
