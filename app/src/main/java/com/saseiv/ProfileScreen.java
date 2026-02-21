@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +21,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 public class ProfileScreen extends AppCompatActivity {
 
     private ImageView mPic;
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class ProfileScreen extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile_screen);
 
+        linearLayout = findViewById(R.id.lenguaje);
         mPic = findViewById(R.id.profilePicture);
         Glide.with(this)
                 .load(getDrawable(R.drawable.saiyanfish))

@@ -53,6 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent" >
 
         <LinearLayout
+            android:id="@+id/lenguaje"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#DCEEEF"

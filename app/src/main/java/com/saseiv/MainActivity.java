@@ -80,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
         swipeLayout = findViewById(R.id.swipeRefresh);
         swipeLayout.setOnRefreshListener(mOnRefreshListener);
 
+        bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openProfile();
+            }
+        });
         bottomAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.logoff) {
                 MaterialAlertDialogBuilder builder =
@@ -454,13 +460,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    public void openProfile(MenuItem menu) {
+    public void openProfile() {
         startActivity(new Intent(this, ProfileScreen.class));
     }
 
