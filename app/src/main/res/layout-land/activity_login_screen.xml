@@ -48,7 +48,9 @@
         app:layout_constraintStart_toStartOf="@id/gline2"
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:startIconDrawable="@drawable/outline_alternate_email_24"
+        app:startIconTint="@color/blue_500"
         app:hintTextColor="@color/blue_500"
+        android:textColorHint="@color/blue_500"
         app:boxStrokeColor="@color/blue_700"
         >
 
@@ -58,6 +60,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/outline_alternate_email_24"
             android:alpha="0.6"
+            android:textColor="@color/blue_500"
             android:background="@color/white"
             android:hint="@string/Email"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -71,7 +74,9 @@
         app:layout_constraintTop_toBottomOf="@id/tinp1"
         app:startIconDrawable="@drawable/key_basic_com"
         app:passwordToggleEnabled="true"
+        app:startIconTint="@color/blue_500"
         app:hintTextColor="@color/blue_500"
+        android:textColorHint="@color/blue_500"
         app:boxStrokeColor="@color/blue_700"
         >
 
@@ -82,6 +87,7 @@
             android:layout_height="wrap_content"
             android:alpha="0.6"
             android:drawableLeft="@drawable/key_basic_com"
+            android:textColor="@color/blue_500"
             android:background="@color/white"
             android:hint="@string/Password"/>
 

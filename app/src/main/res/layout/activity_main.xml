@@ -63,7 +63,7 @@
             app:liftOnScroll="false"
             app:fabAlignmentMode="center"
             app:menu="@menu/bottom_app_bar_menu"
-            app:navigationIcon="@drawable/usericon"
+            app:navigationIcon="@drawable/user_alt_1_svgrepo_com"
             app:fabCradleVerticalOffset="1dp"
             app:fabCradleMargin="16dp"
             app:fabCradleRoundedCornerRadius="8dp" />

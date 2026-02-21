@@ -12,10 +12,10 @@
     <string name="Fishaudio">Fish audio</string>
     <string name="Play">Play</string>
     <string name="Fishimage">Fish image</string>
-    <string name="NewFish">New Fish</string>
+    <string name="NewFish">NEW FISH</string>
     <string name="ChooseFile">Choose File</string>
     <string name="upload">Upload</string>
-    <string name="Greeting">Bienvenid@!</string>
-    <string name="Contactanos">Tienes alguna duda o deseas borrar algún registro? Contáctanos!</string>
+    <string name="Greeting">Welcome!</string>
+    <string name="Contactanos">Do you have any doubt or want to delete an entry? Contact us!</string>
 
 </resources>

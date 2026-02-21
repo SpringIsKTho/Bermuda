@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -42,8 +44,6 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int PICK_IMAGE = 100;
-    private static final int PICK_AUDIO = 101;
 
     private Uri imageUri;
     private Uri audioUri;
@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     private PezAdapter adapter;
     private List<Pez> listaPeces = new ArrayList<>();
     private SwipeRefreshLayout swipeLayout;
+    private ActivityResultLauncher<String> imagePickerLauncher;
+    private ActivityResultLauncher<String> audioPickerLauncher;
 
 
     @Override
@@ -99,6 +101,28 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
+        imagePickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                uri -> {
+                    if (uri != null) {
+                        imageUri = uri;
+                        Toast.makeText(this,
+                                "Imagen seleccionada",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        audioPickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                uri -> {
+                    if (uri != null) {
+                        audioUri = uri;
+                        Toast.makeText(this,
+                                "Audio seleccionado",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+
         fab.setOnClickListener(v -> mostrarDialogNuevoPez());
     }
 
@@ -142,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void mostrarDialogNuevoPez() {
+        imageUri = null;
+        audioUri = null;
 
         View dialogView =
                 LayoutInflater.from(this)
@@ -159,17 +185,13 @@ public class MainActivity extends AppCompatActivity {
                         .setCancelable(true)
                         .create();
 
-        imgFish.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
-            startActivityForResult(intent, PICK_IMAGE);
-        });
+        imgFish.setOnClickListener(v ->
+                imagePickerLauncher.launch("image/*")
+        );
 
-        audioFish.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("audio/*");
-            startActivityForResult(intent, PICK_AUDIO);
-        });
+        audioFish.setOnClickListener(v ->
+                audioPickerLauncher.launch("audio/*")
+        );
 
         uploadFish.setOnClickListener(v -> {
 
@@ -419,22 +441,6 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK && data != null) {
-            if (requestCode == PICK_IMAGE) {
-                imageUri = data.getData();
-                Toast.makeText(this, "Imagen seleccionada", Toast.LENGTH_SHORT).show();
-            }
-            if (requestCode == PICK_AUDIO) {
-                audioUri = data.getData();
-                Toast.makeText(this, "Audio seleccionado", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 
 
     private void logoutUser() {

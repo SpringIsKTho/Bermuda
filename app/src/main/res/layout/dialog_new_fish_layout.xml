@@ -12,6 +12,7 @@
         android:gravity="center"
         android:text="@string/NewFish"
         android:paddingBottom="10dp"
+        android:textStyle="bold"
         android:textColor="@color/orange_500"
         />
 
@@ -21,6 +22,9 @@
         android:layout_height="wrap_content"
         android:hint="@string/Fishname"
         android:textSize="12sp"
+        android:textColorHint="@color/black"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"
         android:paddingBottom="10dp"/>
 
     <EditText
@@ -29,6 +33,9 @@
         android:layout_height="wrap_content"
         android:hint="@string/Fishdesc"
         android:textSize="12sp"
+        android:textColorHint="@color/black"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"
         android:paddingBottom="10dp"/>
 
 <!--    <TextView-->
@@ -51,7 +58,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue_200"
             android:text="@string/Fishimage"
-            android:textColor="@color/white"
+            android:textColor="@color/colorBotonesSignUp"
             />
 
         <Button
@@ -62,7 +69,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue_200"
             android:text="@string/Fishaudio"
-            android:textColor="@color/white" />
+            android:textColor="@color/colorBotonesSignUp" />
     </LinearLayout>
 
     <Button
