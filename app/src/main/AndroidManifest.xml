@@ -22,10 +22,6 @@
             android:exported="true"
             android:theme="@style/Theme.Bermuda.NoActionBar"/>
         <activity
-            android:name=".DetallePezActivity"
-            android:exported="true"
-            android:theme="@style/Alt.Theme.Bermuda" />
-        <activity
             android:name=".ProfileScreen"
             android:exported="true"
             android:theme="@style/Theme.Bermuda.NoActionBar" />

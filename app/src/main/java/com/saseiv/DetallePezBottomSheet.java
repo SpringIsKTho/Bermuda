@@ -1,61 +1,72 @@
 package com.saseiv;
 
-
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.saseiv.R;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class DetallePezActivity extends AppCompatActivity {
+public class DetallePezBottomSheet extends BottomSheetDialogFragment {
 
+    private Pez pez;
     private MediaPlayer mediaPlayer;
     private SeekBar seekBar;
-    private LinearLayout linearLayout;
     private TextView txtTiempoActual, txtDuracionTotal;
+    private LinearLayout linearLayout;
     private Handler handler = new Handler();
 
+    public DetallePezBottomSheet(Pez pez) {
+        this.pez = pez;
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_pez);
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState
+    ) {
+        View view = inflater.inflate(
+                R.layout.bottom_sheet_detalle_pez,
+                container,
+                false
+        );
 
-        ImageView imagen = findViewById(R.id.imgDetalle);
-        TextView nombre = findViewById(R.id.txtNombreDetalle);
-        TextView descripcion = findViewById(R.id.txtDescripcionDetalle);
-        TextView txtAudioNoDisponible = findViewById(R.id.txtAudioNoDisponible);
-        Button btnPlay = findViewById(R.id.btnPlayAudio);
+        ImageView imagen = view.findViewById(R.id.imgDetalle);
+        TextView nombre = view.findViewById(R.id.txtNombreDetalle);
+        TextView descripcion = view.findViewById(R.id.txtDescripcionDetalle);
+        TextView txtAudioNoDisponible = view.findViewById(R.id.txtAudioNoDisponible);
+        Button btnPlay = view.findViewById(R.id.btnPlayAudio);
 
-        seekBar = findViewById(R.id.seekBar);
-        txtTiempoActual = findViewById(R.id.txtTiempoActual);
-        txtDuracionTotal = findViewById(R.id.txtDuracionTotal);
-        linearLayout = findViewById(R.id.linearTiempos);
+        seekBar = view.findViewById(R.id.seekBar);
+        txtTiempoActual = view.findViewById(R.id.txtTiempoActual);
+        txtDuracionTotal = view.findViewById(R.id.txtDuracionTotal);
+        linearLayout = view.findViewById(R.id.linearTiempos);
 
-        String nombrePez = getIntent().getStringExtra("nombre");
-        String descripcionPez = getIntent().getStringExtra("descripcion");
-        String imagenUrl = getIntent().getStringExtra("imagen");
-        String audioUrl = getIntent().getStringExtra("audio");
+        nombre.setText(pez.getNombre());
+        descripcion.setText(pez.getDescripcion());
 
-        nombre.setText(nombrePez);
-        descripcion.setText(descripcionPez);
-
-        Glide.with(this)
-                .load(imagenUrl)
+        Glide.with(requireContext())
+                .load(pez.getImagen_url())
                 .into(imagen);
 
-        if (audioUrl == null || audioUrl.isEmpty()) {
+        if (pez.getAudio_url() == null || pez.getAudio_url().isEmpty()) {
             txtAudioNoDisponible.setVisibility(View.VISIBLE);
             btnPlay.setVisibility(View.GONE);
             seekBar.setVisibility(View.GONE);
             linearLayout.setVisibility(View.GONE);
         } else {
-            btnPlay.setOnClickListener(v -> reproducirAudio(audioUrl));
-            // Permitir mover el seekbar manualmente
+            btnPlay.setOnClickListener(v -> reproducirAudio(pez.getAudio_url()));
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -63,10 +74,25 @@ public class DetallePezActivity extends AppCompatActivity {
                         mediaPlayer.seekTo(progress);
                     }
                 }
-
                 @Override public void onStartTrackingTouch(SeekBar seekBar) {}
                 @Override public void onStopTrackingTouch(SeekBar seekBar) {}
             });
+        }
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        View bottomSheet = getDialog().findViewById(
+                com.google.android.material.R.id.design_bottom_sheet);
+
+        if (bottomSheet != null) {
+            ViewGroup.LayoutParams params = bottomSheet.getLayoutParams();
+            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            bottomSheet.setLayoutParams(params);
         }
     }
 
@@ -79,7 +105,6 @@ public class DetallePezActivity extends AppCompatActivity {
 
             int duracion = mediaPlayer.getDuration();
             seekBar.setMax(duracion);
-
             txtDuracionTotal.setText(formatearTiempo(duracion));
 
             actualizarSeekBar();
@@ -105,12 +130,16 @@ public class DetallePezActivity extends AppCompatActivity {
         int segundos = milisegundos / 1000;
         int minutos = segundos / 60;
         segundos = segundos % 60;
-
         return String.format("%d:%02d", minutos, segundos);
     }
 
     @Override
-    protected void onDestroy() {
+    public int getTheme() {
+        return R.style.ThemeOverlay_Bermuda_BottomSheet;
+    }
+
+    @Override
+    public void onDestroy() {
         super.onDestroy();
         if (mediaPlayer != null) {
             mediaPlayer.release();

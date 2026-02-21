@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- ActionBar -->
-    <style name="Base.Theme.Bermuda" parent="Theme.MaterialComponents.DayNight">
+    <style name="Base.Theme.Bermuda" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
     <style name="Alt.Theme.Bermuda" parent="Theme.MaterialComponents.DayNight">
@@ -24,4 +24,27 @@
     <!-- No ActionBar -->
     <style name="Theme.Bermuda.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar" />
     <style name="Theme.Bermuda" parent="Base.Theme.Bermuda"/>
+
+    <style name="ThemeOverlay.Bermuda.BottomSheet"
+        parent="ThemeOverlay.Material3.BottomSheetDialog">
+
+        <item name="bottomSheetStyle">@style/Widget.Bermuda.BottomSheet</item>
+
+    </style>
+
+    <style name="Widget.Bermuda.BottomSheet"
+        parent="Widget.Material3.BottomSheet.Modal">
+
+        <item name="shapeAppearance">@style/ShapeAppearance.Bermuda.BottomSheet</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+
+    </style>
+
+    <style name="ShapeAppearance.Bermuda.BottomSheet"
+        parent="ShapeAppearance.Material3.LargeComponent">
+
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+
+    </style>
 </resources>
