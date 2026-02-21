@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
     private Uri imageUri;
     private Uri audioUri;
-
     private RecyclerView recyclerView;
     private PezAdapter adapter;
     private List<Pez> listaPeces = new ArrayList<>();
     private SwipeRefreshLayout swipeLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,20 @@ public class MainActivity extends AppCompatActivity {
 
         bottomAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.logoff) {
-                logoutUser();
+                MaterialAlertDialogBuilder builder =
+                        new MaterialAlertDialogBuilder(this)
+                                .setTitle("Cerrar sesión")
+                                .setMessage("¿Estás seguro?")
+                                .setPositiveButton("Sí", (dialog, which) -> logoutUser())
+                                .setNegativeButton("No", null);
+
+                AlertDialog dialog = builder.show();
+
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setTextColor(getColor(R.color.blue_700));
+
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(getColor(R.color.blue_700));
                 return true;
             }
             return false;
@@ -96,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
         public void onRefresh() {
             final ConstraintLayout mLayout = findViewById(R.id.main);
             cargarPeces();
-            Snackbar snackbar = Snackbar.make(mLayout, "Page reset", Snackbar.LENGTH_SHORT);
-            snackbar.show();
+            Toast.makeText(MainActivity.this, "Peces recargados", Toast.LENGTH_SHORT).show();
             swipeLayout.setRefreshing(false);
         }
     };
@@ -129,8 +141,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
     private void mostrarDialogNuevoPez() {
 
         View dialogView =

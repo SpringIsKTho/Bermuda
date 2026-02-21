@@ -1,8 +1,11 @@
 package com.saseiv;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,13 +19,15 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 public class ProfileScreen extends AppCompatActivity {
 
+    private ImageView mPic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile_screen);
 
-        ImageView mPic = findViewById(R.id.profilePicture);
+        mPic = findViewById(R.id.profilePicture);
         Glide.with(this)
                 .load(getDrawable(R.drawable.saiyanfish))
                 .transition(DrawableTransitionOptions.withCrossFade(100))
@@ -30,5 +35,13 @@ public class ProfileScreen extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(new ColorDrawable(this.getResources().getColor(R.color.transparent)))
                 .into(mPic);
+    }
+
+    public void openContact(View v){
+        startActivity(new Intent(ProfileScreen.this, contact.class));
+    }
+
+    public void openPrivacidad(View v){
+        startActivity(new Intent(ProfileScreen.this, PrivacidadActivity.class));
     }
 }

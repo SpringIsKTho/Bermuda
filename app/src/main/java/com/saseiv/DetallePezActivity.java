@@ -16,6 +16,7 @@ public class DetallePezActivity extends AppCompatActivity {
 
     private MediaPlayer mediaPlayer;
     private SeekBar seekBar;
+    private LinearLayout linearLayout;
     private TextView txtTiempoActual, txtDuracionTotal;
     private Handler handler = new Handler();
 
@@ -33,6 +34,7 @@ public class DetallePezActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.seekBar);
         txtTiempoActual = findViewById(R.id.txtTiempoActual);
         txtDuracionTotal = findViewById(R.id.txtDuracionTotal);
+        linearLayout = findViewById(R.id.linearTiempos);
 
         String nombrePez = getIntent().getStringExtra("nombre");
         String descripcionPez = getIntent().getStringExtra("descripcion");
@@ -49,22 +51,23 @@ public class DetallePezActivity extends AppCompatActivity {
         if (audioUrl == null || audioUrl.isEmpty()) {
             txtAudioNoDisponible.setVisibility(View.VISIBLE);
             btnPlay.setVisibility(View.GONE);
+            seekBar.setVisibility(View.GONE);
+            linearLayout.setVisibility(View.GONE);
         } else {
             btnPlay.setOnClickListener(v -> reproducirAudio(audioUrl));
-        }
-
-        // Permitir mover el seekbar manualmente
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser && mediaPlayer != null) {
-                    mediaPlayer.seekTo(progress);
+            // Permitir mover el seekbar manualmente
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    if (fromUser && mediaPlayer != null) {
+                        mediaPlayer.seekTo(progress);
+                    }
                 }
-            }
 
-            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
-            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
+                @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+                @Override public void onStopTrackingTouch(SeekBar seekBar) {}
+            });
+        }
     }
 
     private void reproducirAudio(String url) {

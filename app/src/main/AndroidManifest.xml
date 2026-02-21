@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,13 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bermuda">
         <activity
+            android:name=".PrivacidadActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Bermuda.NoActionBar"/>
+        <activity
+            android:name=".contact"
+            android:exported="true"
+            android:theme="@style/Theme.Bermuda.NoActionBar"/>
+        <activity
             android:name=".DetallePezActivity"
             android:exported="true"
-            android:theme="@style/Alt.Theme.Bermuda"/>
+            android:theme="@style/Alt.Theme.Bermuda" />
         <activity
             android:name=".ProfileScreen"
             android:exported="true"
-            android:theme="@style/Alt.Theme.Bermuda" />
+            android:theme="@style/Theme.Bermuda.NoActionBar" />
         <activity
             android:name=".SignUpScreen"
             android:exported="true"
@@ -42,7 +50,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Alt.Theme.Bermuda"></activity>
+            android:theme="@style/Alt.Theme.Bermuda" />
     </application>
 
 </manifest>
