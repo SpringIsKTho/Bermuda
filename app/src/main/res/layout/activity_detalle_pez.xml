@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,22 +60,15 @@
 
         <LinearLayout
             android:id="@+id/linearTiempos"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
             <TextView
                 android:id="@+id/txtTiempoActual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0:00" />
+                tools:text="0:00" />
 
-            <TextView
-                android:id="@+id/dospuntos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="1dp"
-                android:layout_marginStart="1dp"
-                android:text="/" />
 
             <TextView
                 android:id="@+id/txtDuracionTotal"
@@ -82,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="0:00" />
+                tools:text="0:00" />
         </LinearLayout>
 
     </LinearLayout>
