@@ -24,6 +24,7 @@ public class DetallePezBottomSheet extends BottomSheetDialogFragment {
     private TextView txtTiempoActual, txtDuracionTotal;
     private LinearLayout linearLayout;
     private Handler handler = new Handler();
+    private ImageButton btnPlay;
 
     public DetallePezBottomSheet(Pez pez) {
         this.pez = pez;
@@ -46,7 +47,7 @@ public class DetallePezBottomSheet extends BottomSheetDialogFragment {
         TextView nombre = view.findViewById(R.id.txtNombreDetalle);
         TextView descripcion = view.findViewById(R.id.txtDescripcionDetalle);
         TextView txtAudioNoDisponible = view.findViewById(R.id.txtAudioNoDisponible);
-        Button btnPlay = view.findViewById(R.id.btnPlayAudio);
+        btnPlay = view.findViewById(R.id.btnPlayAudio);
 
         seekBar = view.findViewById(R.id.seekBar);
         txtTiempoActual = view.findViewById(R.id.txtTiempoActual);
@@ -66,7 +67,22 @@ public class DetallePezBottomSheet extends BottomSheetDialogFragment {
             seekBar.setVisibility(View.GONE);
             linearLayout.setVisibility(View.GONE);
         } else {
-            btnPlay.setOnClickListener(v -> reproducirAudio(pez.getAudio_url()));
+            btnPlay.setOnClickListener(v -> {
+                if (mediaPlayer == null) {
+                    reproducirAudio(pez.getAudio_url());
+                    btnPlay.setImageResource(R.drawable.ic_pause);
+                }
+                else if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.pause();
+                    handler.removeCallbacksAndMessages(null);
+                    btnPlay.setImageResource(R.drawable.ic_play);
+                }
+                else {
+                    mediaPlayer.start();
+                    actualizarSeekBar();
+                    btnPlay.setImageResource(R.drawable.ic_pause);
+                }
+            });
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -98,6 +114,12 @@ public class DetallePezBottomSheet extends BottomSheetDialogFragment {
 
     private void reproducirAudio(String url) {
         try {
+
+            if (mediaPlayer != null) {
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
+
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setDataSource(url);
             mediaPlayer.prepare();
@@ -109,20 +131,37 @@ public class DetallePezBottomSheet extends BottomSheetDialogFragment {
 
             actualizarSeekBar();
 
+            mediaPlayer.setOnCompletionListener(mp -> {
+                handler.removeCallbacksAndMessages(null);
+
+                mp.seekTo(0);
+                seekBar.setProgress(0);
+                txtTiempoActual.setText("0:00");
+
+                btnPlay.setImageResource(R.drawable.ic_play);
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void actualizarSeekBar() {
-        if (mediaPlayer != null) {
-            int posicionActual = mediaPlayer.getCurrentPosition();
-            seekBar.setProgress(posicionActual);
-            txtTiempoActual.setText(formatearTiempo(posicionActual));
 
-            if (mediaPlayer.isPlaying()) {
-                handler.postDelayed(this::actualizarSeekBar, 500);
-            }
+        if (mediaPlayer == null) return;
+
+        int posicionActual = mediaPlayer.getCurrentPosition();
+
+        // Evita el frame final visual
+        if (posicionActual >= mediaPlayer.getDuration()) {
+            return;
+        }
+
+        seekBar.setProgress(posicionActual);
+        txtTiempoActual.setText(formatearTiempo(posicionActual));
+
+        if (mediaPlayer.isPlaying()) {
+            handler.postDelayed(this::actualizarSeekBar, 500);
         }
     }
 
@@ -139,11 +178,25 @@ public class DetallePezBottomSheet extends BottomSheetDialogFragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        handler.removeCallbacksAndMessages(null);
+
         if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+            handler.removeCallbacksAndMessages(null);
+            btnPlay.setImageResource(R.drawable.ic_play);
         }
     }
 }
