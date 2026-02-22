@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -42,16 +44,16 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int PICK_IMAGE = 100;
-    private static final int PICK_AUDIO = 101;
 
     private Uri imageUri;
     private Uri audioUri;
-
     private RecyclerView recyclerView;
     private PezAdapter adapter;
     private List<Pez> listaPeces = new ArrayList<>();
     private SwipeRefreshLayout swipeLayout;
+    private ActivityResultLauncher<String> imagePickerLauncher;
+    private ActivityResultLauncher<String> audioPickerLauncher;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerPeces);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
         adapter = new PezAdapter(this, listaPeces);
         recyclerView.setAdapter(adapter);
 
@@ -77,13 +80,54 @@ public class MainActivity extends AppCompatActivity {
         swipeLayout = findViewById(R.id.swipeRefresh);
         swipeLayout.setOnRefreshListener(mOnRefreshListener);
 
+        bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openProfile();
+            }
+        });
         bottomAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.logoff) {
-                logoutUser();
+                MaterialAlertDialogBuilder builder =
+                        new MaterialAlertDialogBuilder(this)
+                                .setTitle("Cerrar sesión")
+                                .setMessage("¿Estás seguro?")
+                                .setPositiveButton("Sí", (dialog, which) -> logoutUser())
+                                .setNegativeButton("No", null);
+
+                AlertDialog dialog = builder.show();
+
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setTextColor(getColor(R.color.blue_700));
+
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(getColor(R.color.blue_700));
                 return true;
             }
             return false;
         });
+
+        imagePickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                uri -> {
+                    if (uri != null) {
+                        imageUri = uri;
+                        Toast.makeText(this,
+                                "Imagen seleccionada",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        audioPickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                uri -> {
+                    if (uri != null) {
+                        audioUri = uri;
+                        Toast.makeText(this,
+                                "Audio seleccionado",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         fab.setOnClickListener(v -> mostrarDialogNuevoPez());
     }
@@ -95,8 +139,7 @@ public class MainActivity extends AppCompatActivity {
         public void onRefresh() {
             final ConstraintLayout mLayout = findViewById(R.id.main);
             cargarPeces();
-            Snackbar snackbar = Snackbar.make(mLayout, "Page reset", Snackbar.LENGTH_SHORT);
-            snackbar.show();
+            Toast.makeText(MainActivity.this, "Peces recargados", Toast.LENGTH_SHORT).show();
             swipeLayout.setRefreshing(false);
         }
     };
@@ -128,9 +171,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
     private void mostrarDialogNuevoPez() {
+        imageUri = null;
+        audioUri = null;
 
         View dialogView =
                 LayoutInflater.from(this)
@@ -148,17 +191,13 @@ public class MainActivity extends AppCompatActivity {
                         .setCancelable(true)
                         .create();
 
-        imgFish.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
-            startActivityForResult(intent, PICK_IMAGE);
-        });
+        imgFish.setOnClickListener(v ->
+                imagePickerLauncher.launch("image/*")
+        );
 
-        audioFish.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("audio/*");
-            startActivityForResult(intent, PICK_AUDIO);
-        });
+        audioFish.setOnClickListener(v ->
+                audioPickerLauncher.launch("audio/*")
+        );
 
         uploadFish.setOnClickListener(v -> {
 
@@ -409,22 +448,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK && data != null) {
-            if (requestCode == PICK_IMAGE) {
-                imageUri = data.getData();
-                Toast.makeText(this, "Imagen seleccionada", Toast.LENGTH_SHORT).show();
-            }
-            if (requestCode == PICK_AUDIO) {
-                audioUri = data.getData();
-                Toast.makeText(this, "Audio seleccionado", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
 
     private void logoutUser() {
         SharedPreferences prefs =
@@ -437,13 +460,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    public void openProfile(MenuItem menu) {
+    public void openProfile() {
         startActivity(new Intent(this, ProfileScreen.class));
     }
 

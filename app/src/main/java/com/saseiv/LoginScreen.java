@@ -41,6 +41,7 @@ public class LoginScreen extends AppCompatActivity {
         loginUser(email, password);
     }
 
+
     public void openSignUp(View view) {
         startActivity(new Intent(this, SignUpScreen.class));
     }

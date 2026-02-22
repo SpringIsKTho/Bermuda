@@ -2,38 +2,43 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_bottom_sheet"
+    android:fillViewport="true">
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
         <ImageView
-            android:layout_marginTop="72dp"
             android:id="@+id/imgDetalle"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:scaleType="centerCrop"
             android:contentDescription="@string/Fishimage" />
-
         <TextView
             android:id="@+id/txtNombreDetalle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Fishname"
+            android:textColor="@color/black"
+            android:gravity="center"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:padding="16dp"/>
 
         <TextView
             android:id="@+id/txtDescripcionDetalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Fishdesc"
+            android:textColor="@color/black"
             android:layout_marginTop="8dp"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            />
 
         <TextView
             android:id="@+id/txtAudioNoDisponible"
@@ -41,22 +46,25 @@
             android:layout_height="wrap_content"
             android:text="@string/noAudio"
             android:textSize="16sp"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:visibility="gone" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnPlayAudio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue_500"
-            android:textColor="@color/orange_500"
-            android:text="@string/Play"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_boton_redondo"
+            android:src="@drawable/ic_play"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/Play"/>
         <SeekBar
             android:id="@+id/seekBar"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="1"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
 
         <LinearLayout
             android:id="@+id/linearTiempos"
@@ -67,13 +75,16 @@
                 android:id="@+id/txtTiempoActual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 tools:text="0:00" />
+
 
 
             <TextView
                 android:id="@+id/txtDuracionTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_weight="1"
                 android:gravity="end"
                 tools:text="0:00" />

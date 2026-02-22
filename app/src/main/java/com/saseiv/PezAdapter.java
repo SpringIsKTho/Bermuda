@@ -54,12 +54,15 @@ public class PezAdapter extends RecyclerView.Adapter<PezAdapter.ViewHolder> {
                 .into(holder.imagen);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DetallePezActivity.class);
-            intent.putExtra("nombre", pez.getNombre());
-            intent.putExtra("descripcion", pez.getDescripcion());
-            intent.putExtra("imagen", pez.getImagen_url());
-            intent.putExtra("audio", pez.getAudio_url());
-            context.startActivity(intent);
+
+            DetallePezBottomSheet sheet =
+                    new DetallePezBottomSheet(pez);
+
+            sheet.show(
+                    ((androidx.appcompat.app.AppCompatActivity) context)
+                            .getSupportFragmentManager(),
+                    "DetallePez"
+            );
         });
     }
 
