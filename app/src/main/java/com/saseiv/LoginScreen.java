@@ -34,7 +34,7 @@ public class LoginScreen extends AppCompatActivity {
         String password = editPassword.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.FillAll), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -63,19 +63,19 @@ public class LoginScreen extends AppCompatActivity {
 
                     saveSession(login.access_token, login.user.id);
 
-                    Toast.makeText(LoginScreen.this, "Login correcto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginScreen.this, getString(R.string.LoginConfirm), Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(LoginScreen.this, MainActivity.class));
                     finish();
 
                 } else {
-                    Toast.makeText(LoginScreen.this, "Credenciales incorrectas", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginScreen.this, getString(R.string.IncorrectCredentials), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LoginScreen.this, "Error de conexión", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginScreen.this, getString(R.string.ErrorConexion), Toast.LENGTH_LONG).show();
             }
         });
     }

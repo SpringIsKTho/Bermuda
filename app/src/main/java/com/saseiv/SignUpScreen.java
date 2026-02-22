@@ -33,12 +33,12 @@ public class SignUpScreen extends AppCompatActivity {
         String confirm = editPasswordConfirm.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
-            Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.FillAll), Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!password.equals(confirm)) {
-            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.PasswordNoCoin), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -63,7 +63,7 @@ public class SignUpScreen extends AppCompatActivity {
                 if (response.isSuccessful()) {
 
                     Toast.makeText(SignUpScreen.this,
-                            "Usuario registrado correctamente",
+                            getString(R.string.SignUpConfirm),
                             Toast.LENGTH_LONG).show();
                     finish();
 
@@ -78,7 +78,7 @@ public class SignUpScreen extends AppCompatActivity {
 
                     } catch (Exception e) {
                         Toast.makeText(SignUpScreen.this,
-                                "Error desconocido",
+                                getString(R.string.ErrorDesc),
                                 Toast.LENGTH_LONG).show();
                     }
                 }
@@ -87,7 +87,7 @@ public class SignUpScreen extends AppCompatActivity {
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 Toast.makeText(SignUpScreen.this,
-                        "Error de conexión",
+                        getString(R.string.ErrorConexion),
                         Toast.LENGTH_LONG).show();
             }
         });

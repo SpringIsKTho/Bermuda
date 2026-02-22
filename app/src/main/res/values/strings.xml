@@ -3,8 +3,15 @@
     <string name="Username">Username</string>
     <string name="Password">Password</string>
     <string name="PasswordC">Confirm Password</string>
+    <string name="PasswordNoCoin">The passwords are not the same</string>
     <string name="Email">Email</string>
     <string name="Login">LOGIN</string>
+    <string name="FillAll">Fill every field</string>
+    <string name="ErrorConexion">Connection Error</string>
+    <string name="ErrorDesc">"Unknown Error"</string>
+    <string name="LoginConfirm">Correct Login</string>
+    <string name="SignUpConfirm">User has registered</string>
+    <string name="IncorrectCredentials">Incorrect Credentials</string>
     <string name="Signup">SIGN UP</string>
     <string name="Cancel">CANCEL</string>
     <string name="Fishname">Fish Name *</string>
@@ -27,15 +34,15 @@
     <string name="introduction">Introduction</string>
     <string name="textoCompromiso1">At Bermuda, we are committed to protecting the privacy and security of the personal information of our users, researchers, and collaborators dedicated to marine life.</string>
     <string name="InformationRecopilation">1. Information We Collect</string>
-    <string name="InformationRecopilationText">We collect personal data such as name, email address, phone number, and other information voluntarily provided by users through forms or registrations.</string>
+    <string name="InformationRecopilationText">We collect the users email address, and other information voluntarily provided by users through forms or registrations.</string>
     <string name="InformationUse">2. Use of Information</string>
-    <string name="InformationUseText">The information is used to improve our services, provide updates about marine projects, respond to inquiries, and strengthen our conservation initiatives.</string>
+    <string name="InformationUseText">The information is used to improve our services, saving each entry in our app database.</string>
     <string name="DataShare">3. Data Sharing</string>
-    <string name="DataShareText">We do not sell or share personal information with third parties, except when required by law or necessary for scientific collaborations.</string>
+    <string name="DataShareText">We do not sell or share personal information with third parties, except when required by law or necessary for specific reports.</string>
     <string name="Security">4. Security</string>
     <string name="SecurityText">We implement technical and organizational measures to protect information against unauthorized access, alteration, or loss.</string>
     <string name="UserRights">5. User Rights</string>
-    <string name="UserRightsText">Users may request access, correction, or deletion of their personal data at any time.</string>
+    <string name="UserRightsText">Users may request access, correction, or deletion of their personal data at any time by contacting bermudateam26@gmail.com or the github accounts @SpringIsKTho, @Gokirbyvan and @Zubillaga736.</string>
     <string name="PoliticChanges">6. Changes to This Policy</string>
     <string name="PoliticChangesText">We reserve the right to update this policy when necessary. Changes will be published in this section.</string>
 

@@ -4,9 +4,10 @@
 ## Descubre los secretos del océano
 ![](img/BermudaBanner.png)
 ## Contenidos de la aplicación:
-- Login básico.
-- Dato diario sobre peces (Fish fact of the day).
-- Sonidos cetáceos con espectrograma.
+- Inicio de sesión y creación de cuentas.
+- Subida de peces a una base de datos.
+- Fotos (obligatorio) y audio (opcional).
+- Cambio de idioma (inglés y español).
 
 ### Participantes:
 - [@SpringIsKTho](https://github.com/SpringIsKTho)
