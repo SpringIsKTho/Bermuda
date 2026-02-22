@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Username">Usuario</string>
+    <string name="Password">Contraseña</string>
+    <string name="PasswordC">Confirmar contraseña</string>
+    <string name="Email">Correo</string>
+    <string name="Login">LOGIN</string>
+    <string name="Signup">REGISTRO</string>
+    <string name="Cancel">CANCELAR</string>
+    <string name="Fishname">Nombre del pez *</string>
+    <string name="Fishname2">Nombre del pez</string>
+    <string name="Fishdesc">Descripción del pez *</string>
+    <string name="Fishaudio">Audio del pez</string>
+    <string name="Play">Reproducir</string>
+    <string name="Fishimage">Foto del pez</string>
+    <string name="NewFish">Nuevo pez</string>
+    <string name="ChooseFile">Elegir archivo</string>
+    <string name="upload">Subir</string>
+    <string name="noAudio">Audio no disponible</string>
+    <string name="Contactanos">Contactanos</string>
+    <string name="Greeting">¡Bienvenido!</string>
+    <string name="Languaje">Idioma</string>
+    <string name="PrivaciPolitics">Politica de privacidad</string>
+    <string name="ExtendedPrivaciPolitics">Politica de privacidad - Bermuda</string>
+    <string name="introduction">Introduccion</string>
+    <string name="textoCompromiso1">En Bermuda nos comprometemos a proteger la privacidad y seguridad de la información personal de nuestros usuarios, investigadores y colaboradores dedicados a la vida marina.</string>
+    <string name="InformationRecopilation">1. Información que recopilamos</string>
+    <string name="InformationRecopilationText">Recopilamos datos personales como nombre, correo electrónico, teléfono y otra información proporcionada voluntariamente por el usuario mediante formularios o registros.</string>
+    <string name="InformationUse">2. Uso de la información</string>
+    <string name="InformationUseText">La información se utiliza para mejorar nuestros servicios, enviar información sobre proyectos marinos, responder consultas y fortalecer nuestras iniciativas de conservación.</string>
+    <string name="DataShare">3. Compartición de datos</string>
+    <string name="DataShareText">No vendemos ni compartimos información personal con terceros, salvo cuando sea requerido por ley o necesario para colaboraciones científicas.</string>
+    <string name="Security">4. Seguridad</string>
+    <string name="SecurityText">Implementamos medidas técnicas y organizativas para proteger la información contra accesos no autorizados, alteraciones o pérdidas.</string>
+    <string name="UserRights">5. Derechos del usuario</string>
+    <string name="UserRightsText">Los usuarios pueden solicitar acceso, corrección o eliminación de sus datos personales en cualquier momento.</string>
+    <string name="PoliticChanges">6. Cambios en la política</string>
+    <string name="PoliticChangesText">Nos reservamos el derecho de actualizar esta política cuando sea necesario. Los cambios serán publicados en esta sección.</string>
+    <string name="LogoBermuda">Logo Bermuda</string>
+    <string name="phone">Teléfono</string>
+    <string name="mail">Correo</string>
+    <string name="logout_title">Cerrar sesión</string>
+    <string name="logout_message">¿Estas seguro?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+
+    <string name="image_selected">Imagen seleccionada</string>
+    <string name="audio_selected">Audio seleccionado</string>
+    <string name="fish_reloaded">Peces recargados</string>
+
+    <string name="error_loading_fish">Error al cargar los peces</string>
+    <string name="connection_error">Error de conexión</string>
+
+    <string name="mandatory_fields">Nombre, descripción e imagen obligatorios</string>
+    <string name="invalid_session">Sesión inválida</string>
+
+    <string name="error_upload_audio">Error al subir el audio</string>
+    <string name="error_upload_image">Error al subir la imagen</string>
+
+    <string name="fish_uploaded_success">Pez subido con éxito.</string>
+    <string name="error_insert_fish">Error al insertar el pez</string>
+
+    <string name="no_body">sin cuerpo</string>
+</resources>

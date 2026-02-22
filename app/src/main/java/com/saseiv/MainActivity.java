@@ -1,35 +1,28 @@
 package com.saseiv;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -44,7 +37,6 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private Uri imageUri;
     private Uri audioUri;
     private RecyclerView recyclerView;
@@ -53,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeLayout;
     private ActivityResultLauncher<String> imagePickerLauncher;
     private ActivityResultLauncher<String> audioPickerLauncher;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,31 +68,31 @@ public class MainActivity extends AppCompatActivity {
                 prefs.getString("access_token", "NO TOKEN"));
 
         cargarPeces();
+
         swipeLayout = findViewById(R.id.swipeRefresh);
         swipeLayout.setOnRefreshListener(mOnRefreshListener);
 
-        bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openProfile();
-            }
-        });
+        bottomAppBar.setNavigationOnClickListener(v -> openProfile());
+
         bottomAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.logoff) {
                 MaterialAlertDialogBuilder builder =
                         new MaterialAlertDialogBuilder(this)
-                                .setTitle("Cerrar sesión")
-                                .setMessage("¿Estás seguro?")
-                                .setPositiveButton("Sí", (dialog, which) -> logoutUser())
-                                .setNegativeButton("No", null);
+                                .setTitle(getString(R.string.logout_title))
+                                .setMessage(getString(R.string.logout_message))
+                                .setPositiveButton(getString(R.string.yes), (dialog, which) -> logoutUser())
+                                .setNegativeButton(getString(R.string.no), null);
 
                 AlertDialog dialog = builder.show();
 
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(getColor(R.color.blue_700));
 
-                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setTextColor(getColor(R.color.blue_700));
+                try {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(getColor(R.color.blue_700));
+                    dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                            .setTextColor(getColor(R.color.blue_700));
+                } catch (Exception ignored) {}
+
                 return true;
             }
             return false;
@@ -113,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     if (uri != null) {
                         imageUri = uri;
                         Toast.makeText(this,
-                                "Imagen seleccionada",
+                                getString(R.string.image_selected),
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -124,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     if (uri != null) {
                         audioUri = uri;
                         Toast.makeText(this,
-                                "Audio seleccionado",
+                                getString(R.string.audio_selected),
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -132,17 +123,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(v -> mostrarDialogNuevoPez());
     }
 
-
-    protected SwipeRefreshLayout.OnRefreshListener
-        mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-        @Override
-        public void onRefresh() {
-            final ConstraintLayout mLayout = findViewById(R.id.main);
-            cargarPeces();
-            Toast.makeText(MainActivity.this, "Peces recargados", Toast.LENGTH_SHORT).show();
-            swipeLayout.setRefreshing(false);
-        }
-    };
+    protected final SwipeRefreshLayout.OnRefreshListener mOnRefreshListener =
+            () -> {
+                cargarPeces();
+                Toast.makeText(MainActivity.this,
+                        getString(R.string.fish_reloaded),
+                        Toast.LENGTH_SHORT).show();
+                swipeLayout.setRefreshing(false);
+            };
 
     private void cargarPeces() {
         SupabaseService service =
@@ -158,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(MainActivity.this,
-                            "Error al cargar los peces",
+                            getString(R.string.error_loading_fish),
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -166,11 +154,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Pez>> call, Throwable t) {
                 Toast.makeText(MainActivity.this,
-                        "Error de conexión",
+                        getString(R.string.connection_error),
                         Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     private void mostrarDialogNuevoPez() {
         imageUri = null;
         audioUri = null;
@@ -191,13 +180,9 @@ public class MainActivity extends AppCompatActivity {
                         .setCancelable(true)
                         .create();
 
-        imgFish.setOnClickListener(v ->
-                imagePickerLauncher.launch("image/*")
-        );
+        imgFish.setOnClickListener(v -> imagePickerLauncher.launch("image/*"));
 
-        audioFish.setOnClickListener(v ->
-                audioPickerLauncher.launch("audio/*")
-        );
+        audioFish.setOnClickListener(v -> audioPickerLauncher.launch("audio/*"));
 
         uploadFish.setOnClickListener(v -> {
 
@@ -206,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (nombre.isEmpty() || desc.isEmpty() || imageUri == null) {
                 Toast.makeText(this,
-                        "Nombre, descripción e imagen obligatorios",
+                        getString(R.string.mandatory_fields),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -218,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (userId == null) {
                 Toast.makeText(this,
-                        "Sesión inválida",
+                        getString(R.string.invalid_session),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -229,7 +214,6 @@ public class MainActivity extends AppCompatActivity {
 
         dialog.show();
     }
-
 
     private void subirImagenYContinuar(
             String userId,
@@ -242,13 +226,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String imageUrl) {
 
-                // 🔹 Si NO hay audio
                 if (audioUri == null) {
                     insertarPez(userId, nombre, desc, imageUrl, null);
                     return;
                 }
 
-                // 🔹 Si SÍ hay audio
                 String audioName = "audio_" + System.currentTimeMillis() + ".mp3";
 
                 uploadAudio(audioUri, "audios", audioName, new OnUploadComplete() {
@@ -261,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onError() {
                         Toast.makeText(
                                 MainActivity.this,
-                                "Error subiendo audio",
+                                getString(R.string.error_upload_audio),
                                 Toast.LENGTH_LONG
                         ).show();
                     }
@@ -272,13 +254,12 @@ public class MainActivity extends AppCompatActivity {
             public void onError() {
                 Toast.makeText(
                         MainActivity.this,
-                        "Error subiendo imagen",
+                        getString(R.string.error_upload_image),
                         Toast.LENGTH_LONG
                 ).show();
             }
         });
     }
-
     private void uploadAudio(
             Uri uri,
             String bucket,
@@ -318,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                                 try {
                                     String error = response.errorBody() != null
                                             ? response.errorBody().string()
-                                            : "sin cuerpo";
+                                            : getString(R.string.no_body);
 
                                     Log.e("AUDIO_UPLOAD_ERROR",
                                             "Código: " + response.code() + " → " + error);
@@ -330,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Log.e("UPLOAD_ERROR", t.getMessage(), t);
+                            Log.e("UPLOAD_ERROR", t != null ? t.getMessage() : "null", t);
                             callback.onError();
                         }
                     });
@@ -380,7 +361,7 @@ public class MainActivity extends AppCompatActivity {
                                 try {
                                     String error = response.errorBody() != null
                                             ? response.errorBody().string()
-                                            : "sin cuerpo";
+                                            : getString(R.string.no_body);
 
                                     Log.e("IMAGE_UPLOAD_ERROR",
                                             "Código: " + response.code() + " → " + error);
@@ -392,7 +373,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Log.e("UPLOAD_ERROR", t.getMessage(), t);
+                            Log.e("UPLOAD_ERROR", t != null ? t.getMessage() : "null", t);
                             callback.onError();
                         }
                     });
@@ -430,7 +411,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
 
                         Toast.makeText(MainActivity.this,
-                                "Pez subido con éxito.",
+                                getString(R.string.fish_uploaded_success),
                                 Toast.LENGTH_SHORT).show();
 
                         cargarPeces();
@@ -441,13 +422,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
                         Toast.makeText(MainActivity.this,
-                                "Error insertando pez",
+                                getString(R.string.error_insert_fish),
                                 Toast.LENGTH_LONG).show();
                     }
                 });
     }
-
-
 
     private void logoutUser() {
         SharedPreferences prefs =
@@ -460,9 +439,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     public void openProfile() {
         startActivity(new Intent(this, ProfileScreen.class));
+    }
+
+    interface OnUploadComplete {
+        void onSuccess(String url);
+        void onError();
     }
 
     private byte[] readBytesFromUri(Uri uri) throws Exception {
@@ -479,7 +462,4 @@ public class MainActivity extends AppCompatActivity {
             return buffer.toByteArray();
         }
     }
-
-
-
 }
