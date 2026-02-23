@@ -22,7 +22,9 @@
     </style>
 
     <!-- No ActionBar -->
-    <style name="Theme.Bermuda.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar" />
+    <style name="Theme.Bermuda.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
     <style name="Theme.Bermuda" parent="Base.Theme.Bermuda"/>
 
     <style name="ThemeOverlay.Bermuda.BottomSheet"
