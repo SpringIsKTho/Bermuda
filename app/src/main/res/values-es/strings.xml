@@ -30,6 +30,8 @@
     <string name="PrivaciPolitics">Politica de privacidad</string>
     <string name="ExtendedPrivaciPolitics">Política de Privacidad - Bermuda</string>
     <string name="introduction">Introducción</string>
+    <string name="copyright">Derechos de Autor</string>
+    <string name="copyrightText">El/la autor/autora de el recurso SVG utilizado para el logotipo (Fish Fishbone Skeleton SVG Vector) es icojam en la página web SVGRepo.</string>
     <string name="textoCompromiso1">En Bermuda, estamos comprometidos con la protección de la privacidad y la seguridad de la información personal de nuestros usuarios, investigadores y colaboradores dedicados a la vida marina.</string>
     <string name="InformationRecopilation">1. Información que recopilamos</string>
     <string name="InformationRecopilationText">Recopilamos la dirección de correo electrónico de los usuarios y otra información proporcionada voluntariamente a través de formularios o registros.</string>
