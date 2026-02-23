@@ -34,7 +34,7 @@ public class ProfileScreen extends AppCompatActivity {
         linearLayout = findViewById(R.id.lenguaje);
         mPic = findViewById(R.id.profilePicture);
         Glide.with(this)
-                .load(getDrawable(R.drawable.saiyanfish))
+                .load(getDrawable(R.drawable.circulobotonselectedfish))
                 .transition(DrawableTransitionOptions.withCrossFade(100))
                 .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
