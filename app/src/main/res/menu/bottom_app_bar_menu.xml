@@ -6,6 +6,7 @@
         android:id="@+id/logoff"
         android:title="LogOff"
         android:icon="@drawable/exit_svgrepo_com"
+        android:iconTint="@color/colorIconos"
         app:showAsAction="ifRoom"
         />
 </menu>

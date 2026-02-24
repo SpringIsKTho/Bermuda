@@ -14,13 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bermuda">
         <activity
+            android:name=".CreditosActivity"
+            android:exported="false" />
+        <activity
             android:name=".PrivacidadActivity"
             android:exported="true"
-            android:theme="@style/Theme.Bermuda.NoActionBar"/>
+            android:theme="@style/Theme.Bermuda.NoActionBar" />
         <activity
             android:name=".contact"
             android:exported="true"
-            android:theme="@style/Theme.Bermuda.NoActionBar"/>
+            android:theme="@style/Theme.Bermuda.NoActionBar" />
         <activity
             android:name=".ProfileScreen"
             android:exported="true"

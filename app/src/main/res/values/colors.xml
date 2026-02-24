@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="colorIconos">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="blue_700">#1D5273</color>
     <color name="blue_500">#1F5B73</color>
     <color name="blue_200">#8EBABF</color>
     <color name="colorBotonesSignUp">#FFFFFF</color>
+    <color name="colorBottomAppBar">#FFFFFF</color>
+    <color name="colorFAB">#FF7700</color>
     <color name="orange_500">#FF7700</color>
     <color name="orange_200">#D9B596</color>
     <color name="backgroundDark">#121212</color>

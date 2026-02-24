@@ -52,6 +52,10 @@ public class ProfileScreen extends AppCompatActivity {
         startActivity(new Intent(ProfileScreen.this, PrivacidadActivity.class));
     }
 
+    public void openCreditos(View v){
+        startActivity(new Intent(ProfileScreen.this, CreditosActivity.class));
+    }
+
     public void chooseLanguage(){
         View view = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_language_layout, null);
 

@@ -29,11 +29,13 @@
     <string name="Greeting">Welcome!</string>
     <string name="Languaje">Language</string>
     <string name="PrivaciPolitics">Privacy Policy</string>
+    <string name="Creditos">Credits</string>
 
     <string name="ExtendedPrivaciPolitics">Privacy Policy - Bermuda</string>
     <string name="introduction">Introduction</string>
     <string name="copyright">Copyright Ownership</string>
-    <string name="copyrightText">The owner of our logo svg asset (Fish Fishbone Skeleton SVG Vector) was made by the user icojam at the website SVGRepo.</string>
+    <string name="GitHubAccounts">GitHub Accounts</string>
+    <string name="copyrightText">The owner of our logo svg asset (Fish Fishbone Skeleton SVG Vector) was made by the user icojam at the website SVGRepo. Among other creators, we would like to include: Dazzle UI (user_alt_1) and krystonschwarze (exit_svg). </string>
     <string name="textoCompromiso1">At Bermuda, we are committed to protecting the privacy and security of the personal information of our users, researchers, and collaborators dedicated to marine life.</string>
     <string name="InformationRecopilation">1. Information We Collect</string>
     <string name="InformationRecopilationText">We collect the users email address, and other information voluntarily provided by users through forms or registrations.</string>
@@ -44,7 +46,7 @@
     <string name="Security">4. Security</string>
     <string name="SecurityText">We implement technical and organizational measures to protect information against unauthorized access, alteration, or loss.</string>
     <string name="UserRights">5. User Rights</string>
-    <string name="UserRightsText">Users may request access, correction, or deletion of their personal data at any time by contacting bermudateam26@gmail.com or the github accounts @SpringIsKTho, @Gokirbyvan and @Zubillaga736.</string>
+    <string name="UserRightsText">Users may request access, correction, or deletion of their personal data at any time by contacting bermudateam26@gmail.com or our GitHub accounts.</string>
     <string name="PoliticChanges">6. Changes to This Policy</string>
     <string name="PoliticChangesText">We reserve the right to update this policy when necessary. Changes will be published in this section.</string>
 

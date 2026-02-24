@@ -10,6 +10,7 @@
     <string name="ErrorConexion">Error de conexión</string>
     <string name="ErrorDesc">"Error desconocido"</string>
     <string name="LoginConfirm">Login Correcto</string>
+    <string name="Creditos">Creditos</string>
     <string name="SignUpConfirm">Usuario registrado correctamente</string>
     <string name="IncorrectCredentials">Credenciales Incorrectas</string>
     <string name="Signup">REGISTRO</string>
@@ -31,7 +32,8 @@
     <string name="ExtendedPrivaciPolitics">Política de Privacidad - Bermuda</string>
     <string name="introduction">Introducción</string>
     <string name="copyright">Derechos de Autor</string>
-    <string name="copyrightText">El/la autor/autora de el recurso SVG utilizado para el logotipo (Fish Fishbone Skeleton SVG Vector) es icojam en la página web SVGRepo.</string>
+    <string name="GitHubAccounts">Cuentas de GitHub</string>
+    <string name="copyrightText">El propietario de nuestro recurso SVG del logotipo (Fish Fishbone Skeleton SVG Vector) fue creado por el usuario icojam en el sitio web SVGRepo. Entre otros creadores, nos gustaría incluir a: Dazzle UI (user_alt_1) y krystonschwarze (exit_svg).</string>
     <string name="textoCompromiso1">En Bermuda, estamos comprometidos con la protección de la privacidad y la seguridad de la información personal de nuestros usuarios, investigadores y colaboradores dedicados a la vida marina.</string>
     <string name="InformationRecopilation">1. Información que recopilamos</string>
     <string name="InformationRecopilationText">Recopilamos la dirección de correo electrónico de los usuarios y otra información proporcionada voluntariamente a través de formularios o registros.</string>
@@ -42,7 +44,7 @@
     <string name="Security">4. Seguridad</string>
     <string name="SecurityText">Implementamos medidas técnicas y organizativas para proteger la información contra accesos no autorizados, alteraciones o pérdidas.</string>
     <string name="UserRights">5. Derechos del usuario</string>
-    <string name="UserRightsText">Los usuarios pueden solicitar acceso, corrección o eliminación de sus datos personales en cualquier momento contactando a bermudateam26@gmail.com o a las cuentas de GitHub @SpringIsKTho, @Gokirbyvan y @Zubillaga736.</string>
+    <string name="UserRightsText">Los usuarios pueden solicitar acceso, corrección o eliminación de sus datos personales en cualquier momento contactando a bermudateam26@gmail.com o nuestras cuentas de GitHub.</string>
     <string name="PoliticChanges">6. Cambios en esta política</string>
     <string name="PoliticChangesText">Nos reservamos el derecho de actualizar esta política cuando sea necesario. Los cambios se publicarán en esta sección.</string>
     <string name="LogoBermuda">Logo Bermuda</string>
